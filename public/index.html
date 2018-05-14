@@ -1,0 +1,74 @@
+<html>
+<head>
+    <title>Os y Cldt</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:200" rel="stylesheet">
+</head>
+<body>
+
+
+<video  autoplay muted loop id="video1" poster="./media/Perfect_Hour.jpg">
+    <source src="./media/Perfect_Hour.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+</video>
+
+    <div class="container">
+        <section>
+        <h1 >REGISTRATE...</h1>
+        <h2>1. Sube tu foto</h2>
+            <form action='/upload' method='post' enctype='multipart/form-data'>
+                <div class="input-group col-md-4 lol">
+                    <input type='file' name='file' class="form-control" />
+                    <div class="input-group-btn"  onclick="fun()">
+                        <input class="btn btn-default" type='submit' value='Upload' />
+                  </div>
+                </div>
+            </form>
+            <h2>2. Datos</h2>
+            <form  id="frm1" method="post" action="form-upload">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Nombre</label>
+                    <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nombre">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Edad</label>
+                    <input type="text" class="form-control" name="age" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="edad">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Sexo</label>
+                    <input type="text" class="form-control" name="sex" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Sexo">
+                  </div>
+                  <button type="submit" class="btn btn-primary" onclick="sub()" >Submit</button>
+                  
+
+
+        </section>
+    </div>
+
+
+    <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $.get("/files", function(data) {
+                for (var i = 0; i < data.length; i++) {
+                    var file = data[i];
+                    var element = "<li><a href='/files" + file + "'>" + data[i] + "</a>";
+                    $(".files ul").append(element);
+                }
+            });
+        });
+
+        function sub()
+        {
+            document.getElementById("frm1").submit();
+        }
+
+    </script>
+</body>
+</html>
